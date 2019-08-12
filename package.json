@@ -1,0 +1,78 @@
+{
+  "name": "vscode-file-peek",
+  "displayName": "File Peek",
+  "description": "Allow peeking to file name strings as definitions from javascript and typescript code.  Allows peek and goto definition. Great for Angular template and style files)",
+  "icon": "images/file_peek_icon.png",
+  "license": "MIT",
+  "keywords": [
+    "peek",
+    "definition",
+    "file",
+    "angular"
+  ],
+  "version": "1.0.1",
+  "publisher": "abierbaum",
+  "bugs": {
+    "url": "https://github.com/abierbaum/vscode-file-peek/issues"
+  },
+  "homepage": "https://github.com/abierbaum/vscode-file-peek/blob/master/README.md",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/abierbaum/vscode-file-peek.git"
+  },
+  "engines": {
+    "vscode": "^0.10.6"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [
+    "*"
+  ],
+  "main": "./out/src/extension",
+  "contributes": {
+    "commands": [],
+    "configuration": {
+      "type": "object",
+      "title": "File Peek extension configuration",
+      "properties": {
+        "file_peek.activeLanguages": {
+          "type": "array",
+          "default": [
+            "typescript",
+            "javascript",
+            "python"
+          ],
+          "items": {
+            "type": "string"
+          },
+          "description": "A list of vscode language names where the extension should be used."
+        },
+        "file_peek.searchFileExtensions": {
+          "type": "array",
+          "default": [
+            ".js",
+            ".ts",
+            ".html",
+            ".css",
+            ".scss"
+          ],
+          "items": {
+            "type": "string"
+          },
+          "description": "A list of extensions that should be tried for finding peeked files.  These are tried in order as further extensions of the potential file name and also as alternative file endings instead of the existing file extension (if available)."
+        }
+      }
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "node ./node_modules/vscode/bin/compile",
+    "compile": "node ./node_modules/vscode/bin/compile -watch -p ./",
+    "postinstall": "node ./node_modules/vscode/bin/install"
+  },
+  "devDependencies": {
+    "typescript": "^3.5.3",
+    "vsce": "^1.66.0",
+    "vscode": "^1.1.36"
+  }
+}
