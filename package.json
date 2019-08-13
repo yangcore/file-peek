@@ -10,7 +10,7 @@
     "file",
     "angular"
   ],
-  "version": "1.0.1",
+  "version": "1.0.2",
   "publisher": "abierbaum",
   "bugs": {
     "url": "https://github.com/abierbaum/vscode-file-peek/issues"
