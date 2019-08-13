@@ -16,8 +16,8 @@ export function activate(context: vscode.ExtensionContext) {
    //console.log('Congratulations, your extension "vscode-file-peek" is now active!');
 
    let config: vscode.WorkspaceConfiguration = vscode.workspace.getConfiguration('file_peek');
-   let active_languages: string[] = config.get('activeLanguages');
-   let search_file_extensions: string[] = config.get('searchFileExtensions');
+   let active_languages: any = config.get('activeLanguages');
+   let search_file_extensions: any = config.get('searchFileExtensions');
 
    /*
    vscode.languages.getLanguages().then((languages: string[]) => {
@@ -63,7 +63,7 @@ class PeekFileDefinitionProvider implements vscode.DefinitionProvider {
 
       // Add on list where we just add the file extension directly
       this.fileSearchExtensions.forEach((extStr) => {
-         potential_paths.push(path.join(lookupPath, `index${extStr}`));
+         potential_paths.push(path.resolve(lookupPath, `index${extStr}`));
          potential_paths.push(lookupPath + extStr);
       });
 
@@ -102,9 +102,12 @@ class PeekFileDefinitionProvider implements vscode.DefinitionProvider {
          jsconfigPaths = jsconfig.compilerOptions ? jsconfig.compilerOptions.paths : '';
          for (const key in jsconfigPaths) {
             const value = jsconfigPaths[key][0]
-            if (lineText.indexOf(key) >= 0 && lineText.indexOf('@import') < 0) {
+            const reg1 = new RegExp(key, "g")
+            const reg2 = /@import/g
+            if (reg1.test(lineText) && !reg2.test(lineText)) {
                lineText = lineText.replace(new RegExp(key, "g"), value)
                flag = true
+               break
             }
          }
       }
@@ -131,7 +134,7 @@ class PeekFileDefinitionProvider implements vscode.DefinitionProvider {
          // Verify the match string is at same location as cursor
          if ((position.character >= match_start) &&
             (position.character <= match_end)) {
-            let full_path = (jsconfigPaths && flag) ? path.join(rootPath, potential_fname) : path.resolve(working_dir, potential_fname);
+            let full_path = (jsconfigPaths && flag) ? path.resolve(rootPath, potential_fname) : path.resolve(working_dir, potential_fname);
             //console.log(" Match: ", match);
             //console.log(" Fname: " + potential_fname);
             //console.log("  Full: " + full_path);

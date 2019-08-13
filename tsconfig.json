@@ -3,17 +3,9 @@
 		"module": "commonjs",
 		"target": "es5",
 		"outDir": "out",
+		"noLib": true,
 		"sourceMap": true,
-		"rootDir": ".",
-		"typeRoots": [
-			"node_modules/@types"
-		],
-		"lib": [
-			"dom",
-			"es5",
-			"scripthost",
-			"es2018"
-		]
+        "rootDir": "."
 	},
 	"exclude": [
 		"node_modules",
