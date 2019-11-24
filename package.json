@@ -51,7 +51,7 @@
         },
         "file_peek.searchFileExtensions": {
           "type": "array",
-          "default": [".js", ".ts", ".html", ".css", ".scss", ".less", ".vue", ".json"],
+          "default": [".js", ".ts", "jsx", "tsx", ".vue", ".css", ".scss", ".less", ".json"],
           "items": {
             "type": "string"
           },
