@@ -41,7 +41,8 @@
           "default": [
             "typescript",
             "javascript",
-            "python"
+            "python",
+            "vue"
           ],
           "items": {
             "type": "string"
@@ -50,7 +51,7 @@
         },
         "file_peek.searchFileExtensions": {
           "type": "array",
-          "default": [".js", ".ts", ".html", ".css", ".scss"],
+          "default": [".js", ".ts", ".html", ".css", ".scss", ".less", ".vue", ".json"],
           "items": {
             "type": "string"
           },
